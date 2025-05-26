@@ -57,4 +57,4 @@ class TestnetGRPOTrainer(HivemindGRPOTrainer):
                 self.follower_train()
         except Exception:
             import traceback
-            traceback.print_exc()  补跑得
+            traceback.print_exc()  # 补跑得
