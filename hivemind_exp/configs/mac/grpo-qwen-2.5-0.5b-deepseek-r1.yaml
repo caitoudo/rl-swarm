@@ -1,19 +1,37 @@
 model_name_or_path: Gensyn/Qwen2.5-0.5B-Instruct
 model_revision: main
-torch_dtype: float32
+torch_dtype: bfloat16  # 使用更节省内存的精度
 attn_implementation: eager
-bf16: false
+bf16: true             # 启用bfloat16加速计算
 use_cpu: true
 
-max_steps: 10
-per_device_train_batch_size: 2
-gradient_accumulation_steps: 8
+# 训练参数优化
+max_steps: 20          # 适当增加训练步数
+per_device_train_batch_size: 4  # 提升批大小
+gradient_accumulation_steps: 4   # 降低梯度累积步数
 gradient_checkpointing: true
 gradient_checkpointing_kwargs:
-  use_reentrant: false  
+  use_reentrant: false
 max_grad_norm: 1.0
 
-max_prompt_length: 128
-max_completion_length: 128
-dataloader_num_workers: 2
-dataloader_pin_memory: false
+# 数据处理优化
+max_prompt_length: 96   # 缩短序列长度
+max_completion_length: 96
+dataloader_num_workers: 10  # 使用全部CPU核心
+dataloader_pin_memory: true  # 启用内存锁页
+
+# 新增优化参数
+optim: adamw_torch
+learning_rate: 5e-5
+weight_decay: 0.01
+lr_scheduler_type: cosine
+warmup_ratio: 0.1
+logging_steps: 5
+save_steps: 20
+eval_steps: 20
+
+# 内存优化配置
+fp16: false
+tf32: false
+use_mmap: true
+low_cpu_mem_usage: true
