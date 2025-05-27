@@ -7,7 +7,7 @@ tf32: false
 
 max_steps: 10
 per_device_train_batch_size: 2
-gradient_accumulation_steps: 8
+gradient_accumulation_steps: 4
 gradient_checkpointing: true
 gradient_checkpointing_kwargs:
   use_reentrant: false  
@@ -15,5 +15,8 @@ max_grad_norm: 1.0
 
 max_prompt_length: 128
 max_completion_length: 128
-dataloader_num_workers: 4
+dataloader_num_workers: 2
 dataloader_pin_memory: false
+
+use_cpu: true
+ddp_find_unused_parameters: false
