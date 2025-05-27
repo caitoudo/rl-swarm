@@ -5,9 +5,9 @@ attn_implementation: eager
 bf16: false
 tf32: false
 
-max_steps: 10
+max_steps: 20
 per_device_train_batch_size: 2
-gradient_accumulation_steps: 4
+gradient_accumulation_steps: 8
 gradient_checkpointing: true
 gradient_checkpointing_kwargs:
   use_reentrant: false  
