@@ -3,7 +3,7 @@ model_name_or_path: Gensyn/Qwen2.5-0.5B-Instruct
 model_revision: main
 torch_dtype: bfloat32
 attn_implementation: flash_attention_2
-bf16: true
+bf16: false
 tf32: false
 
 # Training arguments
